@@ -57,8 +57,6 @@ export default function EditProfile({
       />
     )
   }
-
-  // Todo add error handling/404 page?
 }
 
 export function EditProfileForm({
@@ -134,7 +132,9 @@ export function EditProfileForm({
       content: (
         <TestimoniesTab
           publishedTestimonies={publishedTestimonies.items.result ?? []}
-          draftTestimonies={draftTestimonies.result ?? []}
+          publishedTestimoniesPagination={publishedTestimonies.pagination}
+          draftTestimonies={draftTestimonies.items.result ?? []}
+          draftTestimoniesPagination={draftTestimonies.pagination}
         />
       )
     },
@@ -147,7 +147,7 @@ export function EditProfileForm({
 
   const { followOrg } = useFlags()
 
-  if (followOrg === false) {
+  if (!followOrg) {
     tabs.splice(2, 1)
   }
 
